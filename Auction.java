@@ -57,18 +57,18 @@ public class Auction
     {
         Lot selectedLot = getLot(lotNumber);
         if(selectedLot != null) {
-            Bid bid = new Bid(bidder, value);
-            boolean successful = selectedLot.bidFor(bid);
+            //Bid bid = new Bid(bidder, value);
+            boolean successful = selectedLot.bidFor(new Bid(bidder, value));
             if(successful) {
                 System.out.println("The bid for lot number " +
                                    lotNumber + " was successful.");
             }
             else {
                 // Report which bid is higher.
-                Bid highestBid = selectedLot.getHighestBid();
+                //Bid highestBid = selectedLot.getHighestBid();
                 System.out.println("Lot number: " + lotNumber +
                                    " already has a bid of: " +
-                                   highestBid.getValue());
+                                   selectedLot.getHighestBid().getValue());
             }
         }
     }
@@ -99,6 +99,24 @@ public class Auction
             System.out.println("Lot number: " + lotNumber +
                                " does not exist.");
             return null;
+        }
+    }
+    
+    /*
+     * Método que muestre los detalles de todos los items que se esten usando
+     */
+    public void close()
+    {
+        for (Lot lot : lots)
+        {
+            if (lot.getHighestBid() != null)
+            {
+                System.out.println(lot.toString() + lot.getHighestBid().getBidder().getName());
+            }
+            else
+            {
+                System.out.println("No ha habido pujas");
+            }
         }
     }
 }
