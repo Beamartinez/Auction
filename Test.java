@@ -22,5 +22,6 @@ public class Test
         auction.makeABid(3,person2,300);
         
         auction.close();
+        auction.getUnsold();
     } 
 }

@@ -119,4 +119,28 @@ public class Auction
             }
         }
     }
+    
+    /*
+     * Metodo que devuelva una coleccion de todos los items por los que no habido ninguna
+     * puja en este momento
+     */
+    public ArrayList getUnsold()
+    {
+        ArrayList<Lot> copia = new ArrayList<>();
+        copia = (ArrayList)lots.clone();
+        int contador = 0;
+        
+        for (Lot lot : lots)
+        {
+            if(lot.getHighestBid() != null)
+            {
+                copia.remove(contador);
+            }
+            else
+            {
+                contador++;
+            }
+        }
+        return copia;
+    }
 }
